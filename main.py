@@ -191,6 +191,7 @@ def feed_animal(animals):
 
     msg = ani.eat(food)
 
+
     msg += f" You fed the {ani.type} called {ani.name}."
 
     if ani.type == "DOG":
