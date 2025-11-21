@@ -34,9 +34,9 @@
         "type": "Dog",
         "id": "008-ZOO-DOG-2025",
         "name": "Digger",
-        "colour": "BROWN",
-        "limb_count": 9,
-        "tail_length": 6
+        "colour": "PINK",
+        "limb_count": 8,
+        "tail_length": 8
     },
     {
         "type": "Bird",

@@ -2,8 +2,8 @@ from animal import Animal
 
 class Cat(Animal):
     _whisker_count = 10
-    def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, whisker_count=6, type="CAT"):
-        super().__init__(id=id, name=name, colour=colour, limb_count=limb_count, type="CAT")
+    def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, whisker_count=6, type="Cat"):
+        super().__init__(id=id, name=name, colour=colour, limb_count=limb_count, type=type)
         self.whisker_count = whisker_count
 
     @property

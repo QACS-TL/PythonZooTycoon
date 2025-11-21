@@ -2,8 +2,8 @@ from animal import Animal
 
 class Bird(Animal):
     _wingspan = 10
-    def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, wingspan=10, type="BIRD"):
-        super().__init__(id=id, name=name, colour=colour, limb_count=limb_count, type="BIRD")
+    def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, wingspan=10, type="Bird"):
+        super().__init__(id=id, name=name, colour=colour, limb_count=limb_count, type=type)
         self.wingspan = wingspan
 
     @property

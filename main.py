@@ -1,3 +1,5 @@
+from unittest import case
+
 from animal import Animal
 from bird import Bird
 from cat import Cat
@@ -75,7 +77,7 @@ def add_animal(animals):
     #     print("Invalid name, please try again.")
     #     name = input_detail("Name")
 
-    species = get_and_validate_property(lambda s: s.upper() not in ("CAT", "DOG", "BIRD", "APE", "UNKNOWN"), "species").upper()
+    species = get_and_validate_property(lambda s: s.upper() not in ("Cat", "Dog", "Bird", "Ape", "Unknown"), "species").title()
 
     colour = get_and_validate_property(lambda c: c.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"), "colour").upper()
     # colour = input_detail("Colour")
@@ -93,13 +95,13 @@ def add_animal(animals):
     ani=None
     try:
         match species:
-            case "CAT":
+            case "Cat":
                 whisker_count = get_and_validate_property(lambda wc: not wc.isnumeric() or int(wc) < 6, "whisker_count")
                 ani = Cat(name=name, colour=colour, limb_count=int(limb_count), whisker_count=int(whisker_count))
-            case "DOG":
+            case "Dog":
                 tail_length = get_and_validate_property(lambda tl: not tl.isnumeric() or int(tl) < 5, "tail_length")
                 ani = Dog(name=name, colour=colour, limb_count=int(limb_count), tail_length=int(tail_length))
-            case "BIRD":
+            case "Bird":
                 wingspan = get_and_validate_property(lambda ws: not ws.isnumeric() or int(ws) < 10, "wingspan")
                 ani = Bird(name=name, colour=colour, limb_count=int(limb_count), wingspan=int(wingspan))
             case _:
@@ -149,12 +151,12 @@ def edit_animal(animals):
     ani.colour = get_and_validate_property(lambda c: c.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"), "colour", ani.colour)
     ani.limb_count = int(get_and_validate_property(lambda lc: not lc.isnumeric() or int(lc) < 0, "limb_count", ani.limb_count))
 
-    match ani.type.upper():
-        case "CAT":
+    match ani.type:
+        case "Cat":
             ani.whisker_count = int(get_and_validate_property(lambda wc: not wc.isnumeric() or int(wc) < 6, "whisker_count", ani.whisker_count))
-        case "DOG":
+        case "Dog":
             ani.tail_length = int(get_and_validate_property(lambda tl: not tl.isnumeric() or int(tl) < 5, "tail_length", ani.tail_length))
-        case "BIRD":
+        case "Bird":
             ani.wingspan = int(get_and_validate_property(lambda ws: not ws.isnumeric() or int(ws) < 10, "wingspan", ani.wingspan))
 
     save_animals(animals)
@@ -180,11 +182,11 @@ def feed_animal(animals):
 
     food = ""
     match ani.type:
-        case "CAT":
+        case "Cat":
             food = "fish"
-        case "DOG":
+        case "Dog":
             food = "biscuits"
-        case "BIRD":
+        case "Bird":
             food = "seeds"
         case _:
             food = "sandwiches"
@@ -194,15 +196,38 @@ def feed_animal(animals):
 
     msg += f" You fed the {ani.type} called {ani.name}."
 
-    if ani.type == "DOG":
+    if ani.type == "Dog":
         msg += " It's wagging its tail happily!"
-    elif ani.type =="CAT":
+    elif ani.type =="Cat":
         msg += " It purrs contentedly."
-    elif ani.type == "BIRD":
+    elif ani.type == "Bird":
         msg += " It chirps sweetly."
     else:
         msg += " It seems satisfied."
     print(msg)
+
+def filter_animals(animals):
+    filtered_animals = None
+    print()
+    print("Filter - Menu")
+    print("1) Cats")
+    print("2) Dogs")
+    print("3) Birds")
+    print("4) All")
+    choice = input_detail("Choose an option")
+    species = None
+    filtered_animals = [(i, a) for i, a in enumerate(animals, start=1)]
+    match choice:
+        case "1": species = "Cat"
+        case "2": species = "Dog"
+        case "3": species = "Bird"
+        case _: species = "*"
+
+    if species != "*":
+        filtered_animals = [(i, a) for i, a in enumerate(animals, start=1) if a.type == species]
+
+    for ani in filtered_animals:
+        print(f"{ani[0]}: {ani[1]}")
 
 def input_detail(prompt, default = None):
     return input(f"{prompt}: ").strip()
@@ -215,7 +240,8 @@ def print_menu():
     print("3) Edit animal")
     print("4) Remove animal")
     print("5) Feed animal")
-    print("6) Exit")
+    print("6) Filter animals")
+    print("7) Exit")
 
 
 def main_menu():
@@ -233,7 +259,9 @@ def main_menu():
             remove_animal(animals)
         elif choice == "5":
             feed_animal(animals)
-        elif choice == "6" or choice.lower() in ("exit", "quit"):
+        elif choice == "6":
+            filter_animals(animals)
+        elif choice == "7" or choice.lower() in ("exit", "quit"):
             print("Goodbye — saving and exiting.")
             # save_animals(animals)
             break

@@ -6,11 +6,11 @@ from dog import Dog
 
 def animal_from_dict(data):
     animal_type = data["type"]
-    if animal_type.upper() == "DOG":
+    if animal_type.title() == "Dog":
         return Dog(**data)
-    elif animal_type.upper() == "CAT":
+    elif animal_type.title() == "Cat":
         return Cat(**data)
-    elif animal_type.upper() == "BIRD":
+    elif animal_type.title() == "Bird":
         return Bird(**data)
     else:
         return Animal(**data)

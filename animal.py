@@ -17,7 +17,7 @@ class Animal:
         high_val += 1
         return f"{high_val:03d}-ZOO-{self.__class__.__name__[:3].upper()}-{datetime.datetime.now().strftime('%Y')}"
 
-    def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, type="ANIMAL"):
+    def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, type="Animal"):
         self.name = name
         self.colour = colour
         self.limb_count = limb_count
