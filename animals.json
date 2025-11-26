@@ -1,0 +1,65 @@
+[
+    {
+        "type": "Dog",
+        "id": "001-ZOO-DOG-2025",
+        "name": "Fido",
+        "colour": "BLACK",
+        "limb_count": 3,
+        "tail_length": 6
+    },
+    {
+        "type": "Bird",
+        "id": "003-ZOO-BIR-2025",
+        "name": "Boris",
+        "colour": "PURPLE",
+        "limb_count": 3,
+        "wingspan": 20
+    },
+    {
+        "type": "Animal",
+        "id": "004-ZOO-CAT-2025",
+        "name": "Cliff",
+        "colour": "ORANGE",
+        "limb_count": 3
+    },
+    {
+        "type": "Bird",
+        "id": "005-ZOO-BIR-2025",
+        "name": "Neddy",
+        "colour": "PINK",
+        "limb_count": 8,
+        "wingspan": 200
+    },
+    {
+        "type": "Dog",
+        "id": "008-ZOO-DOG-2025",
+        "name": "Digger",
+        "colour": "PINK",
+        "limb_count": 8,
+        "tail_length": 8
+    },
+    {
+        "type": "Bird",
+        "id": "010-ZOO-BIR-2025",
+        "name": "Rodney",
+        "colour": "BROWN",
+        "limb_count": 4,
+        "wingspan": 14
+    },
+    {
+        "type": "Cat",
+        "id": "011-ZOO-CAT-2025",
+        "name": "Terry",
+        "colour": "ORANGE",
+        "limb_count": 2,
+        "whisker_count": 8
+    },
+    {
+        "type": "Dog",
+        "id": "012-ZOO-DOG-2025",
+        "name": "Barney",
+        "colour": "ORANGE",
+        "limb_count": 5,
+        "tail_length": 8
+    }
+]

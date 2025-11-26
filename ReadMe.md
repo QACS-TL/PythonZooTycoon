@@ -1,44 +1,68 @@
 # Use Cases for Enhanced Animal Collection System
 
-### Use Case 01: Generate Structured Animal IDs
+### Use Case 01: Serialize Animals to JSON
 
 **As a user**
-</br>**I want** animal IDs to follow a standardized format with meaningful components
-</br>**So that** I can easily identify animals by their ID structure and creation year
+</br>**I want** to save all animal data to a JSON file
+</br>**So that** animal records persist between application sessions
 
-### Use Case 02: Include Species Identifier in ID
-
-**As a user**
-</br>**I want** the animal's species reflected in its ID
-</br>**So that** I can quickly identify the type of animal from its ID alone
-
-### Use Case 03: Validate ID Format with Regex
+### Use Case 02: Convert Animal Objects to Dictionaries
 
 **As a system**
-</br>**I want** to enforce strict ID format validation
-</br>**So that** only properly formatted IDs are accepted and data integrity is maintained
+</br>**I want** each animal class to serialize its properties to a dictionary
+</br>**So that** animal data can be saved in a structured format
 
-### Use Case 04: Test ID Generation with Timestamp
+### Use Case 03: Load Animals from JSON File
+
+**As a user**
+</br>**I want** the application to load existing animal data on startup
+</br>**So that** I can continue working with previously saved animals
+
+### Use Case 04: Reconstruct Animals from Dictionary Data
+
+**As a system**
+</br>**I want** to create appropriate animal instances from dictionary data
+</br>**So that** saved animals are restored with correct class types and behaviors
+
+### Use Case 05: Generate Sequential IDs from Existing Data
+
+**As a system**
+</br>**I want** new animal IDs to continue from the highest existing ID
+</br>**So that** ID numbers remain unique and sequential across sessions
+
+
+### Use Case 06: Implement Animal Factory Function
 
 **As a developer**
-</br>**I want** to verify that auto-generated IDs include the current year
-</br>**So that** ID generation logic produces time-stamped identifiers correctly
+</br>**I want** a centralized factory function to create animal instances
+</br>**So that** object creation logic is consistent and maintainable
 
-### Use Case 05: Test Custom ID Assignment
-
-**As a developer**
-</br>**I want** to verify that manually provided IDs are validated and accepted
-</br>**So that** the system can handle both auto-generated and pre-existing IDs
-
-### Use Case 06: Implement Robust ID Validation
-
-**As a system architect**
-</br>**I want** invalid IDs to raise exceptions rather than silently fail
-</br>**So that** data integrity issues are caught immediately and not propagated
-
-### Use Case 07: Update Test Suite for New ID Format
+### Use Case 07: Calculate Expected ID Dynamically in Tests
 
 **As a QA engineer**
-</br>**I want** all existing tests updated to reflect the new ID structure
-</br>**So that** the test suite validates current system behavior accurately
+**I want** tests to calculate expected IDs from actual file data
+**So that** tests remain valid as animal data changes
 
+### Use Case 08: Remove Hardcoded ID Values from Tests
+
+**As a developer**
+</br>**I want** tests to dynamically determine expected IDs
+</br>**So that** tests don't break when existing animals are added or removed
+
+### Use Case 09: Replace Hardcoded Animal Initialization
+
+**As a developer**
+</br>**I want** to load animals from file instead of hardcoding them
+</br>**So that** the application uses persistent data as the source of truth
+
+### Use Case 10: Implement Bidirectional Serialization
+
+**As a developer**
+</br>**I want** complete serialization and deserialization of animal objects
+</br>**So that** data can round-trip between objects and JSON format without loss
+
+### Use Case 11: Separate Factory Logic into Module
+
+**As a developer**
+</br>**I want** object creation logic in a dedicated factory module
+</br>**So that** code follows separation of concerns principle

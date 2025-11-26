@@ -7,7 +7,6 @@ import sys
 def save_animals(animals):
     pass
 
-
 def load_animals():
     animals = []
     animals.append(Dog(name="Fido", colour="Black", limb_count=4, tail_length=1, type="Dog"))

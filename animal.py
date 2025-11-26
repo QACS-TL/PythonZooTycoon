@@ -1,3 +1,5 @@
+import re
+import datetime
 
 class Animal:
     _limb_count = 0
@@ -7,7 +9,7 @@ class Animal:
 
     def generate_new_id(self):
         Animal.count += 1
-        return f"{Animal.count:03d}"
+        return f"{Animal.count:03d}-ZOO-{self.type[:3].upper()}-{datetime.datetime.now().strftime('%Y')}"
 
     def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, type="Animal"):
         self.name = name
@@ -25,6 +27,8 @@ class Animal:
 
     @id.setter
     def id(self, value):
+        if not re.search("^[0-9]{3}-ZOO-[A-Z]{3}-(19|20)[0-9]{2}$", value):
+            raise ValueError("id must be of the form: 999-ZOO-AAA-YYYY")
         self._id = value
 
     @property
@@ -51,7 +55,7 @@ class Animal:
         return f"I'm a {self.type} called {self.name} using some of my {self._limb_count} limbs to eat {food}."
 
     def move(self, direction, distance):
-        return f"I'm an {self.type} called {self.name} moving {direction} for {distance} metres."
+        return f"I'm a {self.type} called {self.name} moving {direction} for {distance} metres."
 
     def __str__(self):
         return f"Id: {self.id}, Name: {self.name}, Species: {self.type}, Colour: {self.colour}, Limb Count: {self.limb_count}"
