@@ -75,3 +75,11 @@ class AnimalTests(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected_result, result)
+
+    def test_id_validation_with_bad_id(self):
+        expected_result = "Id: 001-ZOO-CAT-2025, Name: Felix, Species: Dog, Colour: ORANGE, Limb Count: 4, Tail Length: 0.75"
+
+        # Act/Assert
+        with self.assertRaises(ValueError):
+            dg = dog.Dog(id="001-ZOO-CAT-2025"), dog.Dog(id="001-ZOO-cat-2025", name="Felix", colour="Orange", limb_count = 4, tail_length=0.75)
+

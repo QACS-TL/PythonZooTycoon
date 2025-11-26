@@ -6,7 +6,7 @@ class Animal:
     _limb_count = 0
     _colour = "Brown"
     _id = None
-    high_val = 0
+    #count = 4
 
     def generate_new_id(self):
         high_val = 0

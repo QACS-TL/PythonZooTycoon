@@ -9,16 +9,33 @@ import json
 ANIMALS_FILE = "animals.json"
 
 def save_animals(animals):
-    data = [animal.to_dict() for animal in animals]
-    with open(ANIMALS_FILE, "w") as fh_animals:
-        json.dump(data, fh_animals, indent=4)
-
+    try:
+        data = [animal.to_dict() for animal in animals]
+        with open(ANIMALS_FILE, "w") as fh_animals:
+            json.dump(data, fh_animals, indent=4)
+    except IOError:
+        sys.exit("IO Error")
 
 def load_animals():
-    with open(ANIMALS_FILE, "r") as fh_animals:
-        data = json.load(fh_animals)
-    return [animal_from_dict(item) for item in data]
+    # animals = []
+    # animals.append(Dog(name="Fido", colour="Black", limb_count=4, tail_length=1, type="Dog"))
+    # animals.append(Cat(name="Fifi", colour="White", limb_count=5, whisker_count=12, type="Cat"))
+    # animals.append(Bird(name="Oscar", colour="Orange", limb_count=3, wingspan=20, type="Bird"))
+    # animals.append(Animal(name="Boris", colour="Purple", limb_count=3, type="Animal"))
+    # return animals
+    try:
+        with open(ANIMALS_FILE, "r") as fh_animals:
+            data = json.load(fh_animals)
+        return [animal_from_dict(item) for item in data]
 
+    except FileNotFoundError:
+        #print("File not found")
+        sys.exit("File not found")
+    except IOError:
+        #print("File not found")
+        sys.exit("IO Error")
+    except ValueError as ex:
+        sys.exit(f"Value Error: animals.csv has a row with a corrupt id: {ex.__str__()}")
 
 def list_animals(animals):
     for i, a in enumerate(animals, start=1):
@@ -43,31 +60,37 @@ def add_animal(animals):
 
     # Additional type specific props
     ani=None
-    match species:
-        case "Cat":
-            whisker_count = get_and_validate_property(lambda wc: not wc.isnumeric() or int(wc) < 6, "whisker_count")
-            ani = Cat(name=name, colour=colour, limb_count=int(limb_count), whisker_count=int(whisker_count))
-        case "Dog":
-            tail_length = get_and_validate_property(lambda tl: not tl.isnumeric() or int(tl) < 5, "tail_length")
-            ani = Dog(name=name, colour=colour, limb_count=int(limb_count), tail_length=int(tail_length))
-        case "Bird":
-            wingspan = get_and_validate_property(lambda ws: not ws.isnumeric() or int(ws) < 10, "wingspan")
-            ani = Bird(name=name, colour=colour, limb_count=int(limb_count), wingspan=int(wingspan))
-        case _:
-            ani = Animal(name=name, colour=colour, limb_count=int(limb_count))
+    try:
+        match species:
+            case "Cat":
+                whisker_count = get_and_validate_property(lambda wc: not wc.isnumeric() or int(wc) < 6, "whisker_count")
+                ani = Cat(name=name, colour=colour, limb_count=int(limb_count), whisker_count=int(whisker_count))
+            case "Dog":
+                tail_length = get_and_validate_property(lambda tl: not tl.isnumeric() or int(tl) < 5, "tail_length")
+                ani = Dog(name=name, colour=colour, limb_count=int(limb_count), tail_length=int(tail_length))
+            case "Bird":
+                wingspan = get_and_validate_property(lambda ws: not ws.isnumeric() or int(ws) < 10, "wingspan")
+                ani = Bird(name=name, colour=colour, limb_count=int(limb_count), wingspan=int(wingspan))
+            case _:
+                ani = Animal(name=name, colour=colour, limb_count=int(limb_count))
 
-    animals.append(ani)
-    save_animals(animals)
+        animals.append(ani)
+        save_animals(animals)
+    except ValueError as ex:
+        print(f"ERROR: {ex}. Animal not added to collection")
 
 def choose_index(max_n):
-    raw = input_detail("Choose number (or blank to cancel)")
-    if raw == "":
-        print("Cancelled.")
-        return None
-    n = int(raw)
-    if 1 <= n <= max_n:
-        return n - 1
-    print("Invalid selection")
+    try:
+        raw = input_detail("Choose number (or blank to cancel)")
+        if raw == "":
+            print("Cancelled.")
+            return None
+        n = int(raw)
+        if 1 <= n <= max_n:
+            return n - 1
+        print("Invalid selection")
+    except ValueError:
+        print("Please enter a number.")
     return None
 
 def animal_selector(animals, message_mode, quit_flag):
