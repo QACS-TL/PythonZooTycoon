@@ -25,3 +25,8 @@ class Bird(Animal):
     def __str__(self):
         #base = super().__str__()
         return f"{super().__str__()}, Wingspan: {self.wingspan}"
+
+    def to_dict(self):
+        d = super().to_dict()
+        d["wingspan"] = self.wingspan
+        return d

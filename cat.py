@@ -25,3 +25,8 @@ class Cat(Animal):
     def __str__(self):
         #base = super().__str__()
         return f"{super().__str__()}, Whisker Count: {self.whisker_count}"
+
+    def to_dict(self):
+        d = super().to_dict()
+        d["whisker_count"] = self.whisker_count
+        return d

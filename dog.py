@@ -25,3 +25,8 @@ class Dog(Animal):
     def __str__(self):
         #base = super().__str__()
         return f"{super().__str__()}, Tail Length: {self.tail_length}"
+
+    def to_dict(self):
+        d = super().to_dict()
+        d["tail_length"] = self.tail_length
+        return d

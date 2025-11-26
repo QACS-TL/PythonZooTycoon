@@ -2,18 +2,23 @@ from animal import Animal
 from bird import Bird
 from cat import Cat
 from dog import Dog
+from factory import animal_from_dict
 import sys
+import json
+
+ANIMALS_FILE = "animals.json"
 
 def save_animals(animals):
-    pass
+    data = [animal.to_dict() for animal in animals]
+    with open(ANIMALS_FILE, "w") as fh_animals:
+        json.dump(data, fh_animals, indent=4)
+
 
 def load_animals():
-    animals = []
-    animals.append(Dog(name="Fido", colour="Black", limb_count=4, tail_length=1, type="Dog"))
-    animals.append(Cat(name="Fifi", colour="White", limb_count=5, whisker_count=12, type="Cat"))
-    animals.append(Bird(name="Oscar", colour="Orange", limb_count=3, wingspan=20, type="Bird"))
-    animals.append(Animal(name="Boris", colour="Purple", limb_count=3, type="Animal"))
-    return animals
+    with open(ANIMALS_FILE, "r") as fh_animals:
+        data = json.load(fh_animals)
+    return [animal_from_dict(item) for item in data]
+
 
 def list_animals(animals):
     for i, a in enumerate(animals, start=1):

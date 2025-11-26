@@ -1,68 +1,75 @@
 # Use Cases for Enhanced Animal Collection System
 
-### Use Case 01: Serialize Animals to JSON
+### Use Case 01: Handle File Not Found Errors on Load
 
 **As a user**
-</br>**I want** to save all animal data to a JSON file
-</br>**So that** animal records persist between application sessions
+</br>**I want** the application to exit gracefully when the animals file is missing
+</br>**So that** I receive a clear error message instead of a system crash
 
-### Use Case 02: Convert Animal Objects to Dictionaries
-
-**As a system**
-</br>**I want** each animal class to serialize its properties to a dictionary
-</br>**So that** animal data can be saved in a structured format
-
-### Use Case 03: Load Animals from JSON File
+### Use Case 02: Handle IO Errors During File Operations
 
 **As a user**
-</br>**I want** the application to load existing animal data on startup
-</br>**So that** I can continue working with previously saved animals
+</br>**I want** the application to handle file read/write errors gracefully
+</br>**So that** I'm informed when file operations fail
 
-### Use Case 04: Reconstruct Animals from Dictionary Data
-
-**As a system**
-</br>**I want** to create appropriate animal instances from dictionary data
-</br>**So that** saved animals are restored with correct class types and behaviors
-
-### Use Case 05: Generate Sequential IDs from Existing Data
+### Use Case 03: Validate Data Integrity on Load
 
 **As a system**
-</br>**I want** new animal IDs to continue from the highest existing ID
-</br>**So that** ID numbers remain unique and sequential across sessions
+</br>**I want** to detect and report corrupt animal IDs when loading data
+</br>**So that** invalid data doesn't enter the system
 
+### Use Case 04: Handle Invalid ID During Animal Creation
 
-### Use Case 06: Implement Animal Factory Function
+**As a user**
+</br>**I want** invalid animal IDs to be caught and reported during creation
+</br>**So that** I can correct the data without losing my work
 
-**As a developer**
-</br>**I want** a centralized factory function to create animal instances
-</br>**So that** object creation logic is consistent and maintainable
+### Use Case 05: Validate Numeric Input in Menu Selection
 
-### Use Case 07: Calculate Expected ID Dynamically in Tests
+**As a user**
+</br>**I want** non-numeric menu selections to be handled gracefully
+</br>**So that** I receive helpful feedback when I make input mistakes
+
+### Use Case 06: Test Invalid ID Format Handling
 
 **As a QA engineer**
-**I want** tests to calculate expected IDs from actual file data
-**So that** tests remain valid as animal data changes
+</br>**I want** to verify that invalid IDs are properly rejected
+</br>**So that** ID validation logic is confirmed to work
 
-### Use Case 08: Remove Hardcoded ID Values from Tests
-
-**As a developer**
-</br>**I want** tests to dynamically determine expected IDs
-</br>**So that** tests don't break when existing animals are added or removed
-
-### Use Case 09: Replace Hardcoded Animal Initialization
+### Use Case 07: Remove Obsolete Counter Variable
 
 **As a developer**
-</br>**I want** to load animals from file instead of hardcoding them
-</br>**So that** the application uses persistent data as the source of truth
+</br>**I want** unused class variables removed from the codebase
+</br>**So that** code remains clean and maintainable
 
-### Use Case 10: Implement Bidirectional Serialization
+### Use Case 08: Provide Descriptive Error Messages
+
+**As a user**
+</br>**I want** error messages that clearly explain what went wrong
+</br>**So that** I can understand and fix problems quickly
+
+### Use Case 09: Prevent Application Crash on Bad Input
+
+**As a user**
+</br>**I want** the application to recover from user input errors
+</br>**So that** I don't lose my work when I make a mistake
+
+### Use Case 10: Ensure Data Integrity with File Errors
+
+**As a system architect**
+</br>**I want** file operation errors to prevent partial data corruption
+</br>**So that** data remains in a consistent state
+
+### Use Case 11: Implement Comprehensive Exception Handling
 
 **As a developer**
-</br>**I want** complete serialization and deserialization of animal objects
-</br>**So that** data can round-trip between objects and JSON format without loss
+</br>**I want** all file operations and user inputs protected by exception handling
+</br>**So that** the application is robust and production-ready
 
-### Use Case 11: Separate Factory Logic into Module
+### Use Case 12: Enhance Test Coverage for Error Cases
 
-**As a developer**
-</br>**I want** object creation logic in a dedicated factory module
-</br>**So that** code follows separation of concerns principle
+**As a QA engineer**
+</br>**I want** tests that verify exception handling behavior
+</br>**So that** error paths are validated as thoroughly as happy paths
+
+

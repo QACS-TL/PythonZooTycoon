@@ -9,7 +9,7 @@
     },
     {
         "type": "Bird",
-        "id": "003-ZOO-BIR-2025",
+        "id": "002-ZOO-BIR-2025",
         "name": "Boris",
         "colour": "PURPLE",
         "limb_count": 3,
@@ -17,14 +17,14 @@
     },
     {
         "type": "Animal",
-        "id": "004-ZOO-CAT-2025",
+        "id": "003-ZOO-CAT-2025",
         "name": "Cliff",
         "colour": "ORANGE",
         "limb_count": 3
     },
     {
         "type": "Bird",
-        "id": "005-ZOO-BIR-2025",
+        "id": "004-ZOO-BIR-2025",
         "name": "Neddy",
         "colour": "PINK",
         "limb_count": 8,
@@ -32,7 +32,7 @@
     },
     {
         "type": "Dog",
-        "id": "008-ZOO-DOG-2025",
+        "id": "005-ZOO-DOG-2025",
         "name": "Digger",
         "colour": "PINK",
         "limb_count": 8,
@@ -40,7 +40,7 @@
     },
     {
         "type": "Bird",
-        "id": "010-ZOO-BIR-2025",
+        "id": "006-ZOO-BIR-2025",
         "name": "Rodney",
         "colour": "BROWN",
         "limb_count": 4,
@@ -48,7 +48,7 @@
     },
     {
         "type": "Cat",
-        "id": "011-ZOO-CAT-2025",
+        "id": "007-ZOO-CAT-2025",
         "name": "Terry",
         "colour": "ORANGE",
         "limb_count": 2,
@@ -56,9 +56,9 @@
     },
     {
         "type": "Dog",
-        "id": "012-ZOO-DOG-2025",
+        "id": "008-ZOO-DOG-2025",
         "name": "Barney",
-        "colour": "ORANGE",
+        "colour": "PINK",
         "limb_count": 5,
         "tail_length": 8
     }

@@ -1,15 +1,20 @@
 import re
 import datetime
+import json
 
 class Animal:
     _limb_count = 0
     _colour = "Brown"
     _id = None
-    count = 4
+    high_val = 0
 
     def generate_new_id(self):
-        Animal.count += 1
-        return f"{Animal.count:03d}-ZOO-{self.type[:3].upper()}-{datetime.datetime.now().strftime('%Y')}"
+        high_val = 0
+        with open("animals.json") as f:
+            for animal in json.load(f):
+                high_val = max(high_val, int(animal["id"][:3]))
+        high_val += 1
+        return f"{high_val:03d}-ZOO-{self.type[:3].upper()}-{datetime.datetime.now().strftime('%Y')}"
 
     def __init__(self, id=None, name="Anonymous", colour="Brown", limb_count=4, type="Animal"):
         self.name = name
@@ -55,8 +60,17 @@ class Animal:
         return f"I'm a {self.type} called {self.name} using some of my {self._limb_count} limbs to eat {food}."
 
     def move(self, direction, distance):
-        return f"I'm a {self.type} called {self.name} moving {direction} for {distance} metres."
+        return f"I'm an {self.type} called {self.name} moving {direction} for {distance} metres."
 
     def __str__(self):
         return f"Id: {self.id}, Name: {self.name}, Species: {self.type}, Colour: {self.colour}, Limb Count: {self.limb_count}"
 
+
+    def to_dict(self):
+        return {
+            "type": self.type,
+            "id": self.id,
+            "name": self.name,
+            "colour": self.colour,
+            "limb_count": self.limb_count
+        }

@@ -1,12 +1,24 @@
 import unittest
 import animal
 import dog
-
+import json
 
 class AnimalTests(unittest.TestCase):
+
+    def Calc_numerical_part_of_id(self):
+        high_val = 0
+        with open("animals.json") as f:
+            for animal in json.load(f):
+                high_val = max(high_val, int(animal["id"][:3]))
+        high_val += 1
+        high_val = f"{high_val:03d}"
+        return high_val
+
+
     def test_string(self):
         # Arrange
-        expected_result = "Id: 001-ZOO-ANI-2025, Name: Felix, Species: Cat, Colour: BROWN, Limb Count: 4"
+        high_val = self.Calc_numerical_part_of_id()
+        expected_result = f"Id: {high_val}-ZOO-CAT-2025, Name: Felix, Species: Cat, Colour: BROWN, Limb Count: 4"
         animal.Animal.count = 0
         ani = animal.Animal(name="Felix", type="Cat", colour="Brown", limb_count=4)
 
@@ -15,6 +27,7 @@ class AnimalTests(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected_result, result)
+
 
     def test_eat(self):
         # Arrange
@@ -41,8 +54,10 @@ class AnimalTests(unittest.TestCase):
 
     def test_dog_initialiser(self):
         # Arrange
-        expected_result = "Id: 006-ZOO-DOG-2025, Name: Felix, Species: Dog, Colour: ORANGE, Limb Count: 4, Tail Length: 0.75"
-        animal.Animal.count = 5
+        high_val = 0
+        high_val = self.Calc_numerical_part_of_id()
+        expected_result = f"Id: {high_val}-ZOO-DOG-2025, Name: Felix, Species: Dog, Colour: ORANGE, Limb Count: 4, Tail Length: 0.75"
+
         d = dog.Dog(name="Felix", colour="Orange", limb_count = 4, tail_length=0.75)
 
         # Act
