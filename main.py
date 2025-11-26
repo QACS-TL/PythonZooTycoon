@@ -1,13 +1,18 @@
 from animal import Animal
+from bird import Bird
+from cat import Cat
+from dog import Dog
+import sys
 
 def save_animals(animals):
     pass
 
+
 def load_animals():
     animals = []
-    animals.append(Animal(name="Fido", colour="Black", limb_count=4, type="Dog"))
-    animals.append(Animal(name="Fifi", colour="White", limb_count=5, type="Cat"))
-    animals.append(Animal(name="Oscar", colour="Orange", limb_count=3, type="Bird"))
+    animals.append(Dog(name="Fido", colour="Black", limb_count=4, tail_length=1, type="Dog"))
+    animals.append(Cat(name="Fifi", colour="White", limb_count=5, whisker_count=12, type="Cat"))
+    animals.append(Bird(name="Oscar", colour="Orange", limb_count=3, wingspan=20, type="Bird"))
     animals.append(Animal(name="Boris", colour="Purple", limb_count=3, type="Animal"))
     return animals
 
@@ -34,7 +39,19 @@ def add_animal(animals):
 
     # Additional type specific props
     ani=None
-    ani = Animal(name=name, colour=colour, limb_count=int(limb_count), type=species)
+
+    match species:
+        case "Cat":
+            whisker_count = get_and_validate_property(lambda wc: not wc.isnumeric() or int(wc) < 6, "whisker_count")
+            ani = Cat(name=name, colour=colour, limb_count=int(limb_count), whisker_count=int(whisker_count))
+        case "Dog":
+            tail_length = get_and_validate_property(lambda tl: not tl.isnumeric() or int(tl) < 5, "tail_length")
+            ani = Dog(name=name, colour=colour, limb_count=int(limb_count), tail_length=int(tail_length))
+        case "Bird":
+            wingspan = get_and_validate_property(lambda ws: not ws.isnumeric() or int(ws) < 10, "wingspan")
+            ani = Bird(name=name, colour=colour, limb_count=int(limb_count), wingspan=int(wingspan))
+        case _:
+            ani = Animal(name=name, colour=colour, limb_count=int(limb_count))
 
     animals.append(ani)
     save_animals(animals)
@@ -76,6 +93,14 @@ def edit_animal(animals):
     ani.colour = get_and_validate_property(lambda c: c.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"), "colour", ani.colour)
     ani.limb_count = int(get_and_validate_property(lambda lc: not lc.isnumeric() or int(lc) < 0, "limb_count", ani.limb_count))
 
+    match ani.type:
+        case "Cat":
+            ani.whisker_count = int(get_and_validate_property(lambda wc: not wc.isnumeric() or int(wc) < 6, "whisker_count", ani.whisker_count))
+        case "Dog":
+            ani.tail_length = int(get_and_validate_property(lambda tl: not tl.isnumeric() or int(tl) < 5, "tail_length", ani.tail_length))
+        case "Bird":
+            ani.wingspan = int(get_and_validate_property(lambda ws: not ws.isnumeric() or int(ws) < 10, "wingspan", ani.wingspan))
+
     save_animals(animals)
     print("Saved changes.")
 
@@ -109,6 +134,7 @@ def feed_animal(animals):
             food = "sandwiches"
 
     msg = ani.eat(food)
+
 
     msg += f" You fed the {ani.type} called {ani.name}."
 

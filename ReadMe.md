@@ -1,43 +1,43 @@
+
 # Use Cases for Enhanced Animal Collection System
 
-### Use Case 01: Implement Dog-Specific Features
+### Use Case 06: Implement Unit Test Suite
 
-**As a user**
-</br>**I want** dogs to have a tail length property
-</br>**So that** I can track unique physical characteristics of dogs
+**As a developer**
+</br>**I want** a comprehensive unit test suite using Python's unittest framework
+</br>**So that** we can automate quality checks and catch regressions early
 
-### Use Case 02: Implement Dog-Specific Features
+### Use Case 02: Establish Testing Infrastructure
 
-**As a user**
-</br>**I want** dogs to have a tail length property
-</br>**So that** I can track unique physical characteristics of dogs
+**As a developer**
+</br>**I want** a standardized testing framework with proper test organization
+</br>**So that** all team members can write consistent, maintainable tests
 
-### Use Case 03: Implement Cat-Specific Features
+### Use Case 03: Verify Animal String Representation
 
-**As a user**
-</br>**I want** cats to have a whisker count property
-</br>**So that** I can track unique physical characteristics of cats
+**As a developer**
+</br>**I want** to test that animals display their properties correctly as strings
+</br>**So that** I can ensure the user interface shows accurate animal information
 
-### Use Case 04: Implement Bird-Specific Features
+### Use Case 04: Verify Animal Eating Behavior
 
-**As a user**
-</br>**I want** birds to have a wingspan property
-</br>**So that** I can track unique physical characteristics of birds
+**As a developer**
+</br>**I want** to test that the animal eat method produces correct output
+</br>**So that** feeding functionality displays proper messages to users
 
-### Use Case 05: Capture Species-Specific Properties During Add
+### Use Case 05: Validate Limb Count Business Rules
 
-**As a user**
-</br>**I want** to enter species-specific properties when adding a new animal
-</br>**So that** all relevant information is captured for each animal type
+**As a developer**
+</br>**I want** to test that negative limb counts are automatically corrected to zero
+</br>**So that** invalid data is handled gracefully without system errors
 
-### Use Case 06: Edit Species-Specific Properties
+### Use Case 06: Verify Dog Subclass Initialization
 
-**As a user**
-</br>**I want** to edit species-specific properties for existing animals
-</br>**So that** I can update detailed information as needed
+**As a developer**
+</br>**I want** to test that Dog objects initialize correctly with all properties
+</br>**So that** specialized animal classes work as expected
 
-### Use Case 07: Create Specialized Animal Instances
 
-**As a system**
-</br>**I want** to instantiate specialized animal classes (Dog, Cat, Bird)
-</br>**So that** animals have appropriate behaviours and properties based on their species
+
+
+
