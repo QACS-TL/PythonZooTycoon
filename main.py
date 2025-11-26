@@ -1,6 +1,6 @@
 import sys
 
 def main_menu():
-    pass
+    print("Hello World")
 
 main_menu()
