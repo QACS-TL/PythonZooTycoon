@@ -3,7 +3,6 @@ import sys
 def save_animals(animals):
     pass
 
-
 def load_animals():
     animals = []
     animals.append({"name": "Fido", "colour": "Black", "limb_count": 4, "type": "Dog"})
@@ -12,37 +11,30 @@ def load_animals():
     animals.append({"name": "Boris", "colour": "Purple", "limb_count": 3, "type": "Animal"})
     return animals
 
-
 def list_animals(animals):
     for i, a in enumerate(animals, start=1):
         print(f"{i}: {a}")
 
+def get_and_validate_property(func, prop_name, prop=None):
+    value = "-1" # Flag to force first attempt into loop
+    while value == "-1" or func(value):
+        if value != "-1":
+            print(f"Invalid {prop_name}, please try again")
+        value = input(f"Enter animal {prop_name}{': ' if prop is None else f' (currently: {prop}): '}")
+        if prop is not None and value == "":  # i.e. if in "edit" mode where empty string = don't change the property's value
+            return prop
+    return value
 
 def add_animal(animals):
     print("Add a new animal")
+    name = get_and_validate_property(lambda n: len(n) < 2, "name")
+    species = get_and_validate_property(lambda s: s.title() not in ("Cat", "Dog", "Bird", "Ape", "Unknown"), "species").title()
+    colour = get_and_validate_property(lambda c: c.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"), "colour").upper()
+    limb_count = get_and_validate_property(lambda lc: not lc.isnumeric() or int(lc) < 0, "limb_count")
 
-    name = input_detail("Name")
-    while len(name) < 2:
-        print("Invalid name, please try again.")
-        name = input_detail("Name")
-
-    species = input_detail("Species")
-    while species.title() not in ("Cat", "Dog", "Bird", "Ape", "Unknown"):
-        print("Invalid type, please try again.")
-        species = input_detail("Type")
-
-    colour = input_detail("Colour")
-    while colour.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"):
-        print("Invalid colour, please try again.")
-        colour = input_detail("Colour")
-
-    limb_count = input_detail("Limb Count")
-    while not limb_count.isnumeric() or int(limb_count) < 0:
-        print("Invalid limb count, please try again.")
-        limb_count = input_detail("Limb Count")
-
-    ani = None
-    ani = {"name": name.title(), "colour": colour.upper(), "limb_count": int(limb_count), "type": species.title()}
+    # Additional type specific props
+    ani=None
+    ani = {"name":name, "colour":colour, "limb_count":int(limb_count), "type":species}
 
     animals.append(ani)
     save_animals(animals)
@@ -58,7 +50,6 @@ def choose_index(max_n):
         return n - 1
     print("Invalid selection")
     return None
-
 
 def animal_selector(animals, message_mode, quit_flag):
     print(f"{message_mode.title()} animals")
@@ -81,39 +72,12 @@ def edit_animal(animals):
         return
     print("Current attributes (leave blank to keep):")
 
-    name= "-1"
-    while name == "-1" or len(name) < 2:
-        if name != "-1":
-            print("Invalid name, please try again.")
-        name = input_detail(f"Enter animal Name (currently: {ani['name']}): ")
-        if name == "":
-            name = ani["name"]
-            break
-    ani["name"] = name.title()
-
-    colour= "-1"
-    while colour == "-1" or colour.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"):
-        if colour != "-1":
-            print("Invalid colour, please try again.")
-        colour = input_detail(f"Enter animal Colour (currently: {ani['colour']}): ")
-        if colour == "":
-            colour = ani["colour"]
-            break
-    ani["colour"] = colour.upper()
-
-    limb_count = "-1"
-    while limb_count == "-1" or not limb_count.isnumeric() or int(limb_count) < 0:
-        if limb_count != "-1":
-            print("Invalid limb count, please try again.")
-        limb_count = input_detail(f"Enter animal limb count (currently: {ani['limb_count']}): ")
-        if limb_count == "":
-            limb_count = ani["limb_count"]
-            break
-    ani["limb_count"] = int(limb_count)
+    ani["name"] = get_and_validate_property(lambda n: len(n) < 2, "name", ani["name"])
+    ani["colour"] = get_and_validate_property(lambda c: c.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"), "colour", ani["colour"])
+    ani["limb_count"] = int(get_and_validate_property(lambda lc: not lc.isnumeric() or int(lc) < 0, "limb_count", ani["limb_count"]))
 
     save_animals(animals)
     print("Saved changes.")
-
 
 def remove_animal(animals):
     message_mode = "remove"
@@ -125,7 +89,6 @@ def remove_animal(animals):
     animals.remove(ani)
     save_animals(animals)
     print(f"Removed {ani["name"]}")
-
 
 def feed_animal(animals):
     message_mode = "feed"
@@ -151,7 +114,7 @@ def feed_animal(animals):
 
     if ani["type"] == "Dog":
         msg += " It's wagging its tail happily!"
-    elif ani["type"] == "Cat":
+    elif ani["type"] =="Cat":
         msg += " It purrs contentedly."
     elif ani["type"] == "Bird":
         msg += " It chirps sweetly."
@@ -159,10 +122,8 @@ def feed_animal(animals):
         msg += " It seems satisfied."
     print(msg)
 
-
-def input_detail(prompt, default=None):
+def input_detail(prompt, default = None):
     return input(f"{prompt}: ").strip()
-
 
 def print_menu():
     print()
@@ -173,7 +134,6 @@ def print_menu():
     print("4) Remove animal")
     print("5) Feed animal")
     print("6) Exit")
-
 
 def main_menu():
     animals = load_animals()
