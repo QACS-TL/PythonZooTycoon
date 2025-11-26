@@ -1,82 +1,43 @@
-# Use Cases for Enhanced Animal Collection System 
+# Use Cases for Enhanced Animal Collection System
 
-### Use Case 01: Create Animal Class with Encapsulation
+### Use Case 01: Implement Dog-Specific Features
 
-**As a developer**
-</br>**I want** animals represented as objects with a class definition
-</br>**So that** data and behavior are encapsulated in a proper OOP structure
+**As a user**
+</br>**I want** dogs to have a tail length property
+</br>**So that** I can track unique physical characteristics of dogs
 
-# Use Case 02: Initialize Animal with Constructor Parameters
+### Use Case 02: Implement Dog-Specific Features
 
-**As a developer**
-</br>**I want** animals created with named parameters
-</br>**So that** initialization is explicit and flexible
+**As a user**
+</br>**I want** dogs to have a tail length property
+</br>**So that** I can track unique physical characteristics of dogs
 
-### Use Case 03: Auto-Generate Unique Animal IDs
+### Use Case 03: Implement Cat-Specific Features
 
-**As a system**
-</br>**I want** each animal to receive a unique sequential ID
-</br>**So that** animals can be uniquely identified
+**As a user**
+</br>**I want** cats to have a whisker count property
+</br>**So that** I can track unique physical characteristics of cats
 
-### Use Case 04: Implement ID Property with Getter/Setter
+### Use Case 04: Implement Bird-Specific Features
 
-**As a developer**
-</br>**I want** ID managed through a property
-</br>**So that** ID access is controlled and consistent
+**As a user**
+</br>**I want** birds to have a wingspan property
+</br>**So that** I can track unique physical characteristics of birds
 
-### Use Case 05: Implement Colour Property with Validation
+### Use Case 05: Capture Species-Specific Properties During Add
 
-**As a system**
-</br>**I want** colour validated and formatted when set
-</br>**So that** only valid colours in standard format are stored
+**As a user**
+</br>**I want** to enter species-specific properties when adding a new animal
+</br>**So that** all relevant information is captured for each animal type
 
-### Use Case 06: Implement Limb Count Property with Range Validation
+### Use Case 06: Edit Species-Specific Properties
 
-**As a system**
-</br>**I want** limb count validated to be non-negative
-</br>**So that** impossible limb counts are prevented
+**As a user**
+</br>**I want** to edit species-specific properties for existing animals
+</br>**So that** I can update detailed information as needed
 
-### Use Case 07: Implement Eat Method for Animal Behaviour
-
-**As a developer**
-</br>**I want** animals to have an eat behavior method
-</br>**So that** eating logic is encapsulated in the Animal class
-
-### Use Case 08: Implement Move Method for Animal Behaviour
-
-**As a developer**
-</br>**I want** animals to have a move behavior method
-</br>**So that** movement capabilities can be simulated
-
-### Use Case 09: Refactor load_animals to Create Animal Objects
+### Use Case 07: Create Specialized Animal Instances
 
 **As a system**
-</br>**I want** pre-loaded animals created as Animal instances
-</br>**So that** initial data uses the new class structure
-
-### Use Case 10: Refactor add_animal to Create Animal Objects
-
-**As a system**
-</br>**I want** new animals created as Animal instances
-</br>**So that** user-added animals use the class structure
-
-### Use Case 11: Refactor edit_animal to Use Object Properties
-
-**As a developer**
-</br>**I want** edit operations to modify object properties
-</br>**So that** editing works with the Animal class
-
-### Use Case 12: Refactor remove_animal to Use Object Properties
-
-**As a developer**
-</br>**I want** remove operations to access object properties
-</br>**So that** removal messages use the Animal class
-
-### Use Case 13: Refactor feed_animal to Use Object Methods and Properties
-
-**As a developer**
-</br>**I want** feed operations to use Animal's eat method
-</br>**So that** eating behavior is encapsulated in the class
-
-
-
+</br>**I want** to instantiate specialized animal classes (Dog, Cat, Bird)
+</br>**So that** animals have appropriate behaviours and properties based on their species

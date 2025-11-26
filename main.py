@@ -1,14 +1,14 @@
-import sys
+from animal import Animal
 
 def save_animals(animals):
     pass
 
 def load_animals():
     animals = []
-    animals.append({"name": "Fido", "colour": "Black", "limb_count": 4, "type": "Dog"})
-    animals.append({"name": "Fifi", "colour": "White", "limb_count": 5, "type": "Cat"})
-    animals.append({"name": "Oscar", "colour": "Orange", "limb_count": 3, "type": "Bird"})
-    animals.append({"name": "Boris", "colour": "Purple", "limb_count": 3, "type": "Animal"})
+    animals.append(Animal(name="Fido", colour="Black", limb_count=4, type="Dog"))
+    animals.append(Animal(name="Fifi", colour="White", limb_count=5, type="Cat"))
+    animals.append(Animal(name="Oscar", colour="Orange", limb_count=3, type="Bird"))
+    animals.append(Animal(name="Boris", colour="Purple", limb_count=3, type="Animal"))
     return animals
 
 def list_animals(animals):
@@ -34,7 +34,7 @@ def add_animal(animals):
 
     # Additional type specific props
     ani=None
-    ani = {"name":name, "colour":colour, "limb_count":int(limb_count), "type":species}
+    ani = Animal(name=name, colour=colour, limb_count=int(limb_count), type=species)
 
     animals.append(ani)
     save_animals(animals)
@@ -72,9 +72,9 @@ def edit_animal(animals):
         return
     print("Current attributes (leave blank to keep):")
 
-    ani["name"] = get_and_validate_property(lambda n: len(n) < 2, "name", ani["name"])
-    ani["colour"] = get_and_validate_property(lambda c: c.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"), "colour", ani["colour"])
-    ani["limb_count"] = int(get_and_validate_property(lambda lc: not lc.isnumeric() or int(lc) < 0, "limb_count", ani["limb_count"]))
+    ani.name = get_and_validate_property(lambda n: len(n) < 2, "name", ani.name)
+    ani.colour = get_and_validate_property(lambda c: c.upper() not in ("BROWN", "BLACK", "WHITE", "ORANGE", "PURPLE", "PINK"), "colour", ani.colour)
+    ani.limb_count = int(get_and_validate_property(lambda lc: not lc.isnumeric() or int(lc) < 0, "limb_count", ani.limb_count))
 
     save_animals(animals)
     print("Saved changes.")
@@ -88,7 +88,7 @@ def remove_animal(animals):
 
     animals.remove(ani)
     save_animals(animals)
-    print(f"Removed {ani["name"]}")
+    print(f"Removed {ani.name}")
 
 def feed_animal(animals):
     message_mode = "feed"
@@ -98,7 +98,7 @@ def feed_animal(animals):
         return
 
     food = ""
-    match ani["type"]:
+    match ani.type:
         case "Cat":
             food = "fish"
         case "Dog":
@@ -108,15 +108,15 @@ def feed_animal(animals):
         case _:
             food = "sandwiches"
 
-    msg = f"I'm a {ani["type"]} called {ani["name"]} using some of my {ani["limb_count"]} limbs to eat {food}."
+    msg = ani.eat(food)
 
-    msg += f" You fed the {ani["type"]} called {ani["name"]}."
+    msg += f" You fed the {ani.type} called {ani.name}."
 
-    if ani["type"] == "Dog":
+    if ani.type == "Dog":
         msg += " It's wagging its tail happily!"
-    elif ani["type"] =="Cat":
+    elif ani.type =="Cat":
         msg += " It purrs contentedly."
-    elif ani["type"] == "Bird":
+    elif ani.type == "Bird":
         msg += " It chirps sweetly."
     else:
         msg += " It seems satisfied."
