@@ -14,20 +14,41 @@ def main_menu():
     animals.append("Boris,PURPLE,3,Animal")
     count += 1
 
-    print(animals)
+    while True:
+        # Menu
+        print()
+        print("Animals App - Menu")
+        print("1) List animals")
+        print("2) Add animal")
+        print("3) Exit")
+        choice = input("Choose an option: ").strip()
 
-    print(f"My count variable tells me there are {count} animals.")
-    print(f"My animals collection tells me there are {len(animals)} animals.")
+        if choice == "1":
+            i = 0
+            for a in animals:
+                i+=1
+                print(str(i) + ") Animal details: " + a)
 
-    print("Add a new animal")
+            print(f"My count variable tells me there are {count} animals.")
+            print(f"My animals collection tells me there are {len(animals)} animals.")
 
-    animal = input("Enter Animal Details (in form '{name},{type},{colour},{limb_count}': ").strip()
+        elif choice == "2":
+            print("Add a new animal")
 
-    animals.append(animal)
-    count += 1
+            animal = input("Enter Animal Details (in form '{name},{type},{colour},{limb_count}': ").strip()
+            while len(animal) < 12: # minimum length of details string
+                print("Invalid details, please try again.")
+                animal = input("Enter Animal Details (in form '{name},{type},{colour},{limb_count}': ").strip()
 
-    print(animals)
-    print(f"My count variable tells me there are {count} animals.")
-    print(f"My animals collection tells me there are {len(animals)} animals.")
+            animals.append(animal)
+            count += 1
+
+
+        elif choice == "3" or choice.lower() in ("exit", "quit"):
+            print("Goodbye — saving and exiting.")
+            # save_animals(animals)
+            break
+        else:
+            print("Unknown option. Please try again.")
 
 main_menu()
