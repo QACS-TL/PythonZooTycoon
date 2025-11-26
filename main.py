@@ -173,6 +173,29 @@ def feed_animal(animals):
         msg += " It seems satisfied."
     print(msg)
 
+def filter_animals(animals):
+    filtered_animals = None
+    print()
+    print("Filter - Menu")
+    print("1) Cats")
+    print("2) Dogs")
+    print("3) Birds")
+    print("4) All")
+    choice = input_detail("Choose an option")
+    species = None
+    filtered_animals = [(i, a) for i, a in enumerate(animals, start=1)]
+    match choice:
+        case "1": species = "Cat"
+        case "2": species = "Dog"
+        case "3": species = "Bird"
+        case _: species = "*"
+
+    if species != "*":
+        filtered_animals = [(i, a) for i, a in enumerate(animals, start=1) if a.type == species]
+
+    for ani in filtered_animals:
+        print(f"{ani[0]}: {ani[1]}")
+
 def input_detail(prompt, default = None):
     return input(f"{prompt}: ").strip()
 
@@ -184,7 +207,9 @@ def print_menu():
     print("3) Edit animal")
     print("4) Remove animal")
     print("5) Feed animal")
-    print("6) Exit")
+    print("6) Filter animals")
+    print("7) Exit")
+
 
 def main_menu():
     animals = load_animals()
@@ -201,7 +226,9 @@ def main_menu():
             remove_animal(animals)
         elif choice == "5":
             feed_animal(animals)
-        elif choice == "6" or choice.lower() in ("exit", "quit"):
+        elif choice == "6":
+            filter_animals(animals)
+        elif choice == "7" or choice.lower() in ("exit", "quit"):
             print("Goodbye — saving and exiting.")
             # save_animals(animals)
             break
