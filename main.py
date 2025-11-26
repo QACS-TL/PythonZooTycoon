@@ -2,12 +2,10 @@ import sys
 
 def main_menu():
     animals = []
-    # csv animal values in string
-    # name, colour, limb_count, type
-    animals.append("Fido,BLACK,4,Dog")
-    animals.append( "Fifi,WHITE,5,Cat")
-    animals.append("Oscar,ORANGE,3,Bird")
-    animals.append("Boris,PURPLE,3,Animal")
+    animals.append({"name": "Fido", "colour": "Black", "limb_count": 4, "type": "Dog"})
+    animals.append({"name": "Fifi", "colour": "White", "limb_count": 5, "type": "Cat"})
+    animals.append({"name": "Oscar", "colour": "Orange", "limb_count": 3, "type": "Bird"})
+    animals.append({"name": "Boris", "colour": "Purple", "limb_count": 3, "type": "Animal"})
 
     while True:
         # Menu
@@ -19,9 +17,9 @@ def main_menu():
         choice = input("Choose an option: ").strip()
 
         if choice == "1":
-            for a in animals:
-                name, colour, limb_count, type = a.split(",")
-                print(f"Name: {name}, Colour: {colour}, LimbCount: {limb_count}, Type: {type}")
+            for i, a in enumerate(animals, start=1):
+                print(f"{i}: {a}")
+
         elif choice == "2":
             print("Add a new animal")
 
@@ -45,7 +43,8 @@ def main_menu():
                 print("Invalid limb count, please try again.")
                 limb_count = input("Limb Count: ").strip()
 
-            ani = ",".join( (name.title(), colour.upper(), limb_count, species.title()))
+            ani = {"name": name.title(), "colour": colour.upper(), "limb_count": int(limb_count),
+                   "type": species.title()}
 
             animals.append(ani)
 
