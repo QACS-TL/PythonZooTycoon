@@ -39,7 +39,6 @@ def add_animal(animals):
 
     # Additional type specific props
     ani=None
-
     match species:
         case "Cat":
             whisker_count = get_and_validate_property(lambda wc: not wc.isnumeric() or int(wc) < 6, "whisker_count")
@@ -55,7 +54,6 @@ def add_animal(animals):
 
     animals.append(ani)
     save_animals(animals)
-
 
 def choose_index(max_n):
     raw = input_detail("Choose number (or blank to cancel)")

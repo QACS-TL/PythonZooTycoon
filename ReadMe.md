@@ -1,43 +1,44 @@
-
 # Use Cases for Enhanced Animal Collection System
 
-### Use Case 06: Implement Unit Test Suite
+### Use Case 01: Generate Structured Animal IDs
+
+**As a user**
+</br>**I want** animal IDs to follow a standardized format with meaningful components
+</br>**So that** I can easily identify animals by their ID structure and creation year
+
+### Use Case 02: Include Species Identifier in ID
+
+**As a user**
+</br>**I want** the animal's species reflected in its ID
+</br>**So that** I can quickly identify the type of animal from its ID alone
+
+### Use Case 03: Validate ID Format with Regex
+
+**As a system**
+</br>**I want** to enforce strict ID format validation
+</br>**So that** only properly formatted IDs are accepted and data integrity is maintained
+
+### Use Case 04: Test ID Generation with Timestamp
 
 **As a developer**
-</br>**I want** a comprehensive unit test suite using Python's unittest framework
-</br>**So that** we can automate quality checks and catch regressions early
+</br>**I want** to verify that auto-generated IDs include the current year
+</br>**So that** ID generation logic produces time-stamped identifiers correctly
 
-### Use Case 02: Establish Testing Infrastructure
-
-**As a developer**
-</br>**I want** a standardized testing framework with proper test organization
-</br>**So that** all team members can write consistent, maintainable tests
-
-### Use Case 03: Verify Animal String Representation
+### Use Case 05: Test Custom ID Assignment
 
 **As a developer**
-</br>**I want** to test that animals display their properties correctly as strings
-</br>**So that** I can ensure the user interface shows accurate animal information
+</br>**I want** to verify that manually provided IDs are validated and accepted
+</br>**So that** the system can handle both auto-generated and pre-existing IDs
 
-### Use Case 04: Verify Animal Eating Behavior
+### Use Case 06: Implement Robust ID Validation
 
-**As a developer**
-</br>**I want** to test that the animal eat method produces correct output
-</br>**So that** feeding functionality displays proper messages to users
+**As a system architect**
+</br>**I want** invalid IDs to raise exceptions rather than silently fail
+</br>**So that** data integrity issues are caught immediately and not propagated
 
-### Use Case 05: Validate Limb Count Business Rules
+### Use Case 07: Update Test Suite for New ID Format
 
-**As a developer**
-</br>**I want** to test that negative limb counts are automatically corrected to zero
-</br>**So that** invalid data is handled gracefully without system errors
-
-### Use Case 06: Verify Dog Subclass Initialization
-
-**As a developer**
-</br>**I want** to test that Dog objects initialize correctly with all properties
-</br>**So that** specialized animal classes work as expected
-
-
-
-
+**As a QA engineer**
+</br>**I want** all existing tests updated to reflect the new ID structure
+</br>**So that** the test suite validates current system behavior accurately
 
